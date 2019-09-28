@@ -50,6 +50,6 @@ WHERE e0.name =~ $p1
 RETURN e0, e2
 ```
 
-The actual code can be inspected [here](src/test/java/co/streamx/fluent/GQL/Basic.java#L84-L120) + few additional [examples](src/test/java/co/streamx/fluent/GQL/Basic.java#L25-L73). You may want to look at our [JPA product](https://github.com/streamx-co/FluentJPA), which lets write in Java practically any SQL query on top of JPA entities. The code is open source, so you may examine the usability, quality and completeness.
+The actual compiling code can be inspected [here](src/test/java/co/streamx/fluent/GQL/Basic.java#L84-L120) + few additional [examples](src/test/java/co/streamx/fluent/GQL/Basic.java#L25-L73). You may also want to look at our [JPA product](https://github.com/streamx-co/FluentJPA), which lets write in Java practically any SQL query on top of JPA entities. The code is open source, so you may examine the usability, quality and completeness.
 
 > This project demoes what we can achieve. At the moment there is no implementation behind. Please [contact me](mailto:kostat@streamx.co), I would be very happy to hear what you think about this idea.
