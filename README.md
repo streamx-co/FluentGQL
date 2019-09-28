@@ -14,7 +14,8 @@ public Map<String, Object> getDirectorAndMovies(String name,
         // "title" parameter is automatically captured
         movie = properties(movie, entry(movie::getTitle, title));
 
-        // Labels and Relationship types are automatically calculated.
+        // Labels and Relationship types are automatically calculated. The user doesn't need to remember the to
+        // write a query. She uses only Java types/methods
         //
         // We decided to be very clear and type-safe in the common case:
         // i.e. since getDirectedMovies() returns a Set<Movie>,
@@ -49,6 +50,6 @@ WHERE e0.name =~ $p1
 RETURN e0, e2
 ```
 
-The actual code can be inspected [here](src/test/java/co/streamx/fluent/GQL/Basic.java#L84-L119) + few additional [examples](src/test/java/co/streamx/fluent/GQL/Basic.java#L25-L73). You may want to look at our [JPA product](https://github.com/streamx-co/FluentJPA), which lets write in Java practically any SQL query on top of JPA entities. The code is open source, so you may examine the usability, quality and completeness.
+The actual code can be inspected [here](src/test/java/co/streamx/fluent/GQL/Basic.java#L84-L120) + few additional [examples](src/test/java/co/streamx/fluent/GQL/Basic.java#L25-L73). You may want to look at our [JPA product](https://github.com/streamx-co/FluentJPA), which lets write in Java practically any SQL query on top of JPA entities. The code is open source, so you may examine the usability, quality and completeness.
 
 > This project demoes what we can achieve. At the moment there is no implementation behind. Please [contact me](mailto:kostat@streamx.co), I would be very happy to hear what you think about this idea.

@@ -92,7 +92,8 @@ public class Basic implements BasicTypes {
             // "title" parameter is automatically captured
             movie = properties(movie, entry(movie::getTitle, title));
 
-            // Labels and Relationship types are automatically calculated.
+            // Labels and Relationship types are automatically calculated. The user doesn't need to remember the to
+            // write a query. She uses only Java types/methods
             //
             // We decided to be very clear and type-safe in the common case:
             // i.e. since getDirectedMovies() returns a Set<Movie>,
