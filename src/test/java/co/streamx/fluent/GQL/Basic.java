@@ -5,6 +5,7 @@ import static co.streamx.fluent.GQL.Cypher.COUNT;
 import static co.streamx.fluent.GQL.Cypher.MATCH;
 import static co.streamx.fluent.GQL.Cypher.ORDER;
 import static co.streamx.fluent.GQL.Cypher.RETURN;
+import static co.streamx.fluent.GQL.Cypher.WHERE;
 import static co.streamx.fluent.GQL.Cypher.alias;
 import static co.streamx.fluent.GQL.Cypher.entry;
 import static co.streamx.fluent.GQL.Cypher.from;
@@ -46,6 +47,15 @@ public class Basic implements BasicTypes {
         });
     }
 
+    public void test4() {
+        FluentGQL.cypher((Course c,
+                          Subject s) -> {
+
+            MATCH(from(c).by(c::getSubject).to(s));
+            RETURN(s);
+        });
+    }
+
     public void test5() {
 
         String name = "Charlie Sheen";
@@ -62,13 +72,50 @@ public class Basic implements BasicTypes {
         });
     }
 
-    public void test4() {
-        FluentGQL.cypher((Course c,
-                          Subject s) -> {
+    public void test6() {
 
-            MATCH(from(c).by(c::getSubject).to(s));
-            RETURN(s);
+        String name = "Li.*";
+        String title = "The Matrix";
+        int someYear = 1979;
+
+        getDirectorAndMovies(name, title, someYear);
+    }
+
+    public Map<String, Object> getDirectorAndMovies(String name,
+                                                    String title,
+                                                    int someYear) {
+        // Query variables are clearly defined as Lambda parameters
+        FluentQuery query = FluentGQL.cypher((Person p,
+                                              Movie movie,
+                                              Movie otherMovie) -> {
+
+            // "title" parameter is automatically captured
+            movie = properties(movie, entry(movie::getTitle, title));
+
+            // Labels and Relationship types are automatically calculated.
+            //
+            // We decided to be very clear and type-safe in the common case:
+            // i.e. since getDirectedMovies() returns a Set<Movie>,
+            // to() accepts only Movie instance (compiler verified)
+            MATCH(from(p).byMany(p::getDirectedMovies).to(movie), from(p).byMany(p::getWroteMovies).to(otherMovie));
+
+            // "name" and "someYear" parameters are automatically captured.
+            // the condition is written as a normal business logic Java expression,
+            // using standard getters, operators, String methods etc
+            WHERE(p.getName().matches(name) && p.getBorn() < someYear);
+
+            RETURN(p, otherMovie);
         });
+
+        // the resulting Cypher statement
+        // query.toString();
+
+        // captured parameters Map
+        // query.parameters();
+
+        // now we can
+        // return client.query(query.toString()).bindAll(query.parameters()).fetch().all();
+        return null;
     }
 
     @SuppressWarnings("serial")

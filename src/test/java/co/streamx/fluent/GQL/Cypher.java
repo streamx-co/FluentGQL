@@ -31,6 +31,10 @@ public interface Cypher {
         throw new UnsupportedOperationException();
     }
 
+    static void WHERE(boolean condition) {
+        throw new UnsupportedOperationException();
+    }
+
     /**
      * Creates an alias
      */
