@@ -30,10 +30,10 @@ public Map<String, Object> getDirectorAndMovies(String name,
         RETURN(p, otherMovie);
     });
 
-    // the resulting Cypher statement
+    // returns the resulting Cypher statement
     // query.toString();
 
-    // captured parameters Map
+    // returns captured parameters Map
     // query.parameters();
 
     // now we can
