@@ -1,6 +1,6 @@
 # Fluent Java Interface to Cypher
 
-Streamx has a line of products offering fluent interface for Java developers to other languages. The key differentiator is natural Java integration, since we "recompile - transpile" Java Byte Code to target language (Cypher). As a result, there is no semantic gaps and learning curve is short. Using our technology, the Cypher queries over OGM would look like this ([see OGM type declarations](types.md)):
+Streamx has a line of products offering Java fluent interface to other languages. The key differentiator is natural Java integration, since we "recompile - transpile" Java Byte Code to target language (e.g. Cypher). As a result, there is no semantic gaps and learning curve is short. Using our technology, the Cypher queries over OGM would look like this ([see OGM type declarations](types.md)):
 
 ```java
 public Map<String, Object> getDirectorAndMovies(String name,
